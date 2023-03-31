@@ -3,6 +3,7 @@ import 'Additional/constants.dart';
 import 'home.dart';
 import 'homescreen.dart';
 import 'package:flutter/gestures.dart';
+import 'package:sizer/sizer.dart';
 
 void main() => runApp(AsymptoteHome());
 
@@ -11,12 +12,16 @@ class AsymptoteHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      scrollBehavior: MyCustomScrollBehavior(),
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Web',
-      theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: HomePage(),
+    return Sizer(
+      builder: (context, orientation, deviceType) {
+        return MaterialApp(
+          scrollBehavior: MyCustomScrollBehavior(),
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Web',
+          theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
+          home: HomePage(),
+        );
+      }
     );
 
     // return MaterialApp(

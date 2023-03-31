@@ -1,3 +1,4 @@
+import 'package:companywebapp/homescreen_v2.dart';
 import 'package:flutter/material.dart';
 import 'Additional/responsive.dart';
 import 'Additional/constants.dart';
@@ -14,9 +15,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ResponsiveWidget(
-          largeScreen: HomeScreen(),
-          smallScreen: HomeScreen(),
-        ));
+        body: HomeScreen_v2(),
+        // ResponsiveWidget(
+        //   largeScreen: HomeScreen(),
+        //   smallScreen: HomeScreen(),
+        // )
+    );
   }
 }
