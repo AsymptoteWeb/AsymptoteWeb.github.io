@@ -100,124 +100,129 @@ class _HomeScreenState extends State<HomeScreen> {
                     Image.asset("images/homepage v2.jpg",fit: BoxFit.fitWidth,),
                     //Positioned(left:10,top:10,child: Image.asset("images/logo.png",height: 50,)),
                     Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(width: 20,),
-                          Image.asset("images/logo.png",height: 50,),
-                          Expanded(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(width: screenSize.width / 8),
-                                InkWell(
-                                  onHover: (value) {
-                                    setState(() {
-                                      value
-                                          ? _isHovering[0] = true
-                                          : _isHovering[0] = false;
-                                    });
-                                  },
-                                  hoverColor: Colors.transparent,
-                                  onTap: () {},
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        height: 12,
-                                      ),
-                                      Text(
-                                        'Pricing',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: _isHovering[0] ? active : disable,
+                      padding: EdgeInsets.fromLTRB(50, 35, 0, 20),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.teal.shade50,
+                          borderRadius: BorderRadius.only(topLeft: Radius.circular(35),bottomLeft: Radius.circular(35),),
+                        ),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(width: 20,),
+                            Image.asset("images/logo.png",height: 70,),
+                            Expanded(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  SizedBox(width: screenSize.width / 8),
+                                  InkWell(
+                                    onHover: (value) {
+                                      setState(() {
+                                        value
+                                            ? _isHovering[0] = true
+                                            : _isHovering[0] = false;
+                                      });
+                                    },
+                                    hoverColor: Colors.transparent,
+                                    onTap: () {},
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
                                         ),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Visibility(
-                                        maintainAnimation: true,
-                                        maintainState: true,
-                                        maintainSize: true,
-                                        visible: _isHovering[0],
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: active,
-                                              borderRadius: BorderRadius.circular(20)),
-                                          height: 7,
-                                          width: 7,
+                                        Text(
+                                          'Projects',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: _isHovering[0] ? active : disable,
+                                          ),
                                         ),
-                                      )
-                                    ],
+                                        SizedBox(height: 5),
+                                        Visibility(
+                                          maintainAnimation: true,
+                                          maintainState: true,
+                                          maintainSize: true,
+                                          visible: _isHovering[0],
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.teal,
+                                                borderRadius: BorderRadius.circular(20)),
+                                            height: 7,
+                                            width: 20,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: screenSize.width / 20),
-                                InkWell(
-                                  onHover: (value) {
-                                    setState(() {
-                                      value
-                                          ? _isHovering[1] = true
-                                          : _isHovering[1] = false;
-                                    });
-                                  },
-                                  hoverColor: Colors.transparent,
-                                  onTap: () {},
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      SizedBox(
-                                        height: 12,
-                                      ),
-                                      Text(
-                                        'Log In',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: _isHovering[1] ? active : disable,
+                                  SizedBox(width: screenSize.width / 25),
+                                  InkWell(
+                                    onHover: (value) {
+                                      setState(() {
+                                        value
+                                            ? _isHovering[1] = true
+                                            : _isHovering[1] = false;
+                                      });
+                                    },
+                                    hoverColor: Colors.transparent,
+                                    onTap: () {},
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
                                         ),
-                                      ),
-                                      SizedBox(height: 5),
-                                      Visibility(
-                                        maintainAnimation: true,
-                                        maintainState: true,
-                                        maintainSize: true,
-                                        visible: _isHovering[1],
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: active,
-                                              borderRadius: BorderRadius.circular(20)),
-                                          height: 7,
-                                          width: 7,
+                                        Text(
+                                          'Services',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: _isHovering[1] ? active : disable,
+                                          ),
                                         ),
-                                      )
-                                    ],
+                                        SizedBox(height: 5),
+                                        Visibility(
+                                          maintainAnimation: true,
+                                          maintainState: true,
+                                          maintainSize: true,
+                                          visible: _isHovering[1],
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.teal,
+                                                borderRadius: BorderRadius.circular(20)),
+                                            height: 7,
+                                            width: 20,
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                SizedBox(width: screenSize.width / 20),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                                color: active,
-                                borderRadius: BorderRadius.circular(25)),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 18, vertical: 12),
-                            child: Text(
-                              "Register",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+                                  SizedBox(width: screenSize.width / 25),
+                                ],
                               ),
                             ),
-                          ),
-                          SizedBox(width: screenSize.width / 40),
-                        ],
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.teal,
+                                  borderRadius: BorderRadius.circular(25)),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 18, vertical: 12),
+                              child: Text(
+                                "Contact Us",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: screenSize.width / 40),
+                          ],
+                        ),
                       ),
                     ),
-                    Positioned(right:100,bottom:150,child: Container(color: Colors.teal,height: 300,width: 450,))
+                    Positioned(right:100,bottom:150,child: Container(color: Colors.teal,height: MediaQuery.of(context).size.height*0.2,width: MediaQuery.of(context).size.width*0.3,))
                   ],
                 ),
                 // child: ListView(

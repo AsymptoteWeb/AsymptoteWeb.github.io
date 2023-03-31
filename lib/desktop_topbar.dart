@@ -49,7 +49,7 @@ class _NavBarState extends State<NavBar> {
                             height: 12,
                           ),
                           Text(
-                            'Pricing',
+                            'Projects',
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
@@ -91,7 +91,7 @@ class _NavBarState extends State<NavBar> {
                             height: 12,
                           ),
                           Text(
-                            'Log In',
+                            'Services',
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,

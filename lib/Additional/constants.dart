@@ -22,6 +22,6 @@ const kSecondaryAddOnColor = Color(0xFF424242);
 const kSecondaryAddOnLightColor = Color(0xFF6D6D6D);
 const kSecondaryAddOnDarkColor = Color(0xFF1B1B1B);
 
-Color active = Color(0xFFED9B59);
+Color active = Colors.teal;
 Color disable = Color(0xFF7D8790);
 Color bgColor = Color(0xFFFEEFE3);
