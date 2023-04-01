@@ -1,5 +1,6 @@
 import 'package:companywebapp/desktop_topbar.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'Additional/constants.dart';
 import 'package:sizer/sizer.dart';
 
@@ -114,22 +115,30 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                   SizedBox(
                     height: 35.h,
                     width: double.infinity,
-                    child: Image.asset("images/homepage.png", fit: BoxFit.fill,)),
+                    //child: Image.asset("images/homepage.png", fit: BoxFit.fill,),//without sidebar
+                    child: Image.asset("images/homepage v2.jpg", fit: BoxFit.fitHeight,),//with sidebar
+                  ),
                   Positioned(
                     top: 5.h,
-                    right: 5.w,
-                    left: 50.w,
-                    bottom: 5.h,
+                    right: 0.w,
+                    left: 45.w,
+                    bottom: 0.h,
                     child: Container(
                       height: 30.h,
                       width: 40.w,
                       decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(0.5) ,
+                        //color: Colors.black.withOpacity(0.5) ,
+                        color: Colors.transparent,
                       ),
-                    child: Center(
-                      child: Text('POWERED BY INNOVATION', style:
-                      TextStyle(color: Colors.white, fontSize: 20.sp), textAlign: TextAlign.center,
-                      ),
+                    child: Text(
+                      'Powered By \n    Innovation',
+                      style: GoogleFonts.playfairDisplay(
+                        fontSize: 25.sp,
+                        fontWeight: FontWeight.w900,
+                        height: 0.9,
+                        color: Colors.black,
+                      ),//with sidebar
+                      //style: TextStyle(color: Colors.white, fontSize: 20.sp), textAlign: TextAlign.center, //without sidebar
                     ),
                     ),
                   ),
