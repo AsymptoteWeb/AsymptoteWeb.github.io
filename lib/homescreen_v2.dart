@@ -384,14 +384,14 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                       ),
                     ),
                     Positioned(
-                        right:100,
-                        bottom:150,
+                        right:8.w,
+                        bottom:15.h,
                         child: Container(
                           color: Colors.teal,
-                          height: 37.h,
+                          height: 30.h,
                           width: 32.w,
                           child: Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -406,7 +406,7 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(15.0),
-                                  child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                                  child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
                                     style: GoogleFonts.merriweatherSans(
                                       fontSize: 3.sp,
                                       //fontWeight: FontWeight.w900,
