@@ -145,54 +145,71 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                 ],
               ),
               Container(
-                height: 10.h,
+                height: 40.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,//Color(0xff010203),
                 ),
-                child: Center(
-                  child: Text('BUILD YOUR DREAM HOME WITH US',
-                    style: GoogleFonts.merriweatherSans(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w900,
-                      height: 0.9,
-                      color: Color(0xff004d65),//Color(0xff2596be),
-                    ),
-                    //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-              Container(
-                height: 4.5.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,//Color(0xff010203),
-                ),
-                child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 30, 8, 20),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('OUR PROJECTS',
+                      Text('BUILD YOUR DREAM HOME WITH US',
                         style: GoogleFonts.merriweatherSans(
-                          fontSize: 13.sp,
+                          fontSize: 14.sp,
                           fontWeight: FontWeight.w900,
                           height: 0.9,
                           color: Color(0xff004d65),//Color(0xff2596be),
                         ),
+                        //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
                       ),
-                      Divider(
-                        color: Color(0xff004d65),
-                        indent: 50,
-                        endIndent: 50,
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                          style: GoogleFonts.merriweatherSans(
+                            fontSize: 10.sp,
+                            //fontWeight: FontWeight.w900,
+                            color: Color(0xff004d65),//Color(0xff2596be),
+                          ),
+                          textAlign: TextAlign.justify,
+                          //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
                 ),
               ),
               Container(
+                height: 7.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFeee6d1),//Color(0xff010203),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('OUR PROJECTS',
+                      style: GoogleFonts.merriweatherSans(
+                        fontSize: 13.sp,
+                        fontWeight: FontWeight.w900,
+                        height: 0.9,
+                        color: Color(0xff004d65),//Color(0xff2596be),
+                      ),
+                    ),
+                    Divider(
+                      color: Color(0xff004d65),
+                      indent: 50,
+                      endIndent: 50,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
                 height: 40.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Colors.white,//Color(0xff010203),
+                  color: Color(0xFFeee6d1),//Color(0xff010203),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -366,7 +383,44 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                         ),
                       ),
                     ),
-                    Positioned(right:100,bottom:150,child: Container(color: Colors.teal,height: MediaQuery.of(context).size.height*0.2,width: MediaQuery.of(context).size.width*0.3,))
+                    Positioned(
+                        right:100,
+                        bottom:150,
+                        child: Container(
+                          color: Colors.teal,
+                          height: 37.h,
+                          width: 32.w,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text('BUILD YOUR DREAM HOME WITH US',
+                                  style: GoogleFonts.merriweatherSans(
+                                    fontSize: 4.sp,
+                                    fontWeight: FontWeight.w900,
+                                    height: 0.9,
+                                    color: Colors.white,//Color(0xff2596be),
+                                  ),
+                                  //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                                    style: GoogleFonts.merriweatherSans(
+                                      fontSize: 3.sp,
+                                      //fontWeight: FontWeight.w900,
+                                      color: Colors.white,//Color(0xff2596be),
+                                    ),
+                                    textAlign: TextAlign.justify,
+                                    //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                    )
                   ],
                 ),
                 // child: ListView(
@@ -407,6 +461,71 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
               //     ],
               //   ),
               // ),
+              Container(
+                height: 20.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,//Color(0xff010203),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text('OUR PROJECTS',
+                      style: GoogleFonts.merriweatherSans(
+                        fontSize: 7.sp,
+                        fontWeight: FontWeight.w900,
+                        height: 0.9,
+                        color: Color(0xff004d65),//Color(0xff2596be),
+                      ),
+                    ),
+                    Divider(
+                      color: Color(0xff004d65),
+                      indent: 50,
+                      endIndent: 50,
+                      thickness: 2,
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                  height: 200.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,//Color(0xff010203),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(50, 5, 50, 0),
+                    child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                        ),
+                        itemCount: 6,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            // shape: RoundedRectangleBorder(
+                            //   side: BorderSide(
+                            //     color: Colors.black,
+                            //   ),
+                            //   borderRadius: BorderRadius.circular(6),
+                            // ),
+                            elevation: 6,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Image.asset("images/homepage.png", fit: BoxFit.fill,),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text('More Info', style: TextStyle(fontSize: 6.sp),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                  )
+              ),
             ],
           ),
         ),
