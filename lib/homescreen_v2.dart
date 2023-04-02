@@ -92,16 +92,16 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
     return Scaffold(
       appBar:  SizerUtil.deviceType == DeviceType.mobile || SizerUtil.deviceType == DeviceType.tablet ?
       AppBar(
-        elevation: 10,
-        shadowColor: Colors.teal.shade100,
-        backgroundColor: Color(0xff010203),
-        title: Image.asset("images/logo.png",height: 35.sp, color: Color(0xffad9c00),),
+        elevation: 3,
+        shadowColor: Color(0xffeee6d1),//eee6d1
+        backgroundColor: Colors.white,//Color(0xff010203),
+        title: Image.asset("images/logo.png",height: 35.sp, color: Color(0xff2596be),),
         centerTitle: true,
         leading: Icon(Icons.call, size: 17.sp,
-          color: Color(0xffad9c00),
+          color: Color(0xff2596be),//Color(0xffad9c00),
         ),
         actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.menu, size: 17.sp, color: Color(0xffad9c00),)),
+          IconButton(onPressed: (){}, icon: Icon(Icons.menu, size: 17.sp, color: Color(0xff2596be),)),
         ],
       ) : null,
       // appBar: PreferredSize(preferredSize: Size(MediaQuery.of(context).size.width, 1000), child: NavBar(),),
@@ -136,7 +136,7 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                         fontSize: 25.sp,
                         fontWeight: FontWeight.w900,
                         height: 0.9,
-                        color: Colors.black,
+                        color: Color(0xff001f2a),
                       ),//with sidebar
                       //style: TextStyle(color: Colors.white, fontSize: 20.sp), textAlign: TextAlign.center, //without sidebar
                     ),
@@ -148,11 +148,43 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                 height: 10.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xff010203),
+                  color: Colors.white,//Color(0xff010203),
                 ),
                 child: Center(
-                  child: Text('BUILD YOUR DREAM HOME WITH US', style:
-                  TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                  child: Text('BUILD YOUR DREAM HOME WITH US',
+                    style: GoogleFonts.merriweatherSans(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w900,
+                      height: 0.9,
+                      color: Color(0xff004d65),//Color(0xff2596be),
+                    ),
+                    //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                  ),
+                ),
+              ),
+              Container(
+                height: 4.5.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,//Color(0xff010203),
+                ),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text('OUR PROJECTS',
+                        style: GoogleFonts.merriweatherSans(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w900,
+                          height: 0.9,
+                          color: Color(0xff004d65),//Color(0xff2596be),
+                        ),
+                      ),
+                      Divider(
+                        color: Color(0xff004d65),
+                        indent: 50,
+                        endIndent: 50,
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -160,34 +192,46 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                 height: 40.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: Color(0xff010203),
+                  color: Colors.white,//Color(0xff010203),
                 ),
-                child: GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                    ),
-                    itemCount: 6,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Card(
-                        child: Stack(
-                          children: [
-                            Image.asset("images/homepage.png", fit: BoxFit.fill,),
-                            Positioned(
-                              top: 12.h,
-                              child: Row(
-                                children: [
-                                  Text('View Details', style: TextStyle(fontSize: 12.sp),),
-                                  IconButton(
-                                    onPressed: () { },
-                                    icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),),
-                                ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GridView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                      ),
+                      itemCount: 6,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Card(
+                          // shape: RoundedRectangleBorder(
+                          //   side: BorderSide(
+                          //     color: Colors.black,
+                          //   ),
+                          //   borderRadius: BorderRadius.circular(6),
+                          // ),
+                          elevation: 6,
+                          child: Stack(
+                            children: [
+                              Image.asset("images/homepage.png", fit: BoxFit.fill,),
+                              Positioned(
+                                left: 2.w,
+                                bottom: -1.h,
+                                child: Row(
+                                  children: [
+                                    Text('View Details', style: TextStyle(fontSize: 10.sp),),
+                                    IconButton(
+                                      onPressed: () { },
+                                      icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    })
+                            ],
+                          ),
+                        );
+                      }),
+                )
                 ),
             ],
           )
