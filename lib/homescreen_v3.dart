@@ -5,14 +5,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Additional/constants.dart';
 import 'package:sizer/sizer.dart';
 
-class HomeScreen_v2 extends StatefulWidget {
-  const HomeScreen_v2({Key? key}) : super(key: key);
+class HomeScreen_v3 extends StatefulWidget {
+  const HomeScreen_v3({Key? key}) : super(key: key);
 
   @override
-  _HomeScreen_v2State createState() => _HomeScreen_v2State();
+  _HomeScreen_v3State createState() => _HomeScreen_v3State();
 }
 
-class _HomeScreen_v2State extends State<HomeScreen_v2> {
+class _HomeScreen_v3State extends State<HomeScreen_v3> {
 
   IconData setAlertSymbol(String statusValue){
     if(statusValue == "Idle"){
@@ -91,12 +91,12 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
     //   );
     // }
     return Scaffold(
-      appBar:  SizerUtil.deviceType == DeviceType.mobile || SizerUtil.deviceType == DeviceType.tablet ?
+      appBar:  MediaQuery.of(context).size.width < 740 ?
       AppBar(
         elevation: 3,
         shadowColor: Color(0xffeee6d1),//eee6d1
         backgroundColor: Colors.white,//Color(0xff010203),
-        title: Image.asset("images/logo.png",height: 35.sp, color: Color(0xff2596be),),
+        title: Image.asset("images/logo.png",height: 7.h, color: Color(0xff2596be),),
         centerTitle: true,
         leading: Icon(Icons.call, size: 17.sp,
           color: Color(0xff2596be),//Color(0xffad9c00),
@@ -108,16 +108,15 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
       // appBar: PreferredSize(preferredSize: Size(MediaQuery.of(context).size.width, 1000), child: NavBar(),),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: SizerUtil.deviceType == DeviceType.mobile || SizerUtil.deviceType == DeviceType.tablet ?
+          child: MediaQuery.of(context).size.width < 740 ?
           Column(
             children: [
               Stack(
                 children: [
                   SizedBox(
-                    height: 35.h,
                     width: double.infinity,
                     //child: Image.asset("images/homepage.png", fit: BoxFit.fill,),//without sidebar
-                    child: Image.asset("images/homepage v2.jpg", fit: BoxFit.fitHeight,),//with sidebar
+                    child: Image.asset("images/homepage v2.jpg", fit: BoxFit.contain,),//with sidebar
                   ),
                   Positioned(
                     top: 5.h,
@@ -131,16 +130,16 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                         //color: Colors.black.withOpacity(0.5) ,
                         color: Colors.transparent,
                       ),
-                    child: Text(
-                      'Powered By \n    Innovation',
-                      style: GoogleFonts.playfairDisplay(
-                        fontSize: 25.sp,
-                        fontWeight: FontWeight.w900,
-                        height: 0.9,
-                        color: Color(0xff001f2a),
-                      ),//with sidebar
-                      //style: TextStyle(color: Colors.white, fontSize: 20.sp), textAlign: TextAlign.center, //without sidebar
-                    ),
+                      child: Text(
+                        'Powered By \n    Innovation',
+                        style: GoogleFonts.playfairDisplay(
+                          fontSize: 25.sp,
+                          fontWeight: FontWeight.w900,
+                          height: 0.9,
+                          color: Color(0xff001f2a),
+                        ),//with sidebar
+                        //style: TextStyle(color: Colors.white, fontSize: 20.sp), textAlign: TextAlign.center, //without sidebar
+                      ),
                     ),
                   ),
                 ],
@@ -158,7 +157,7 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                     children: [
                       Text('BUILD YOUR DREAM HOME WITH US',
                         style: GoogleFonts.merriweatherSans(
-                          fontSize: 14.sp,
+                          fontSize: 10.sp,
                           fontWeight: FontWeight.w900,
                           height: 0.9,
                           color: Color(0xff004d65),//Color(0xff2596be),
@@ -169,7 +168,7 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                         padding: const EdgeInsets.all(15.0),
                         child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
                           style: GoogleFonts.merriweatherSans(
-                            fontSize: 10.sp,
+                            fontSize: 7.sp,
                             //fontWeight: FontWeight.w900,
                             color: Color(0xff004d65),//Color(0xff2596be),
                           ),
@@ -207,53 +206,53 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                 ),
               ),
               Container(
-                height: 40.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Color(0xFFeee6d1),//Color(0xff010203),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: GridView.builder(
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                      ),
-                      itemCount: 6,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          // shape: RoundedRectangleBorder(
-                          //   side: BorderSide(
-                          //     color: Colors.black,
-                          //   ),
-                          //   borderRadius: BorderRadius.circular(6),
-                          // ),
-                          elevation: 6,
-                          child: Stack(
-                            children: [
-                              Image.asset("images/homepage.png", fit: BoxFit.fill,),
-                              Positioned(
-                                left: 2.w,
-                                bottom: -1.h,
-                                child: Row(
-                                  children: [
-                                    Text('View Details', style: TextStyle(fontSize: 10.sp),),
-                                    IconButton(
-                                      onPressed: () { },
-                                      icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),
-                                    ),
-                                  ],
+                  height: 40.h,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFeee6d1),//Color(0xff010203),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridView.builder(
+                        physics: NeverScrollableScrollPhysics(),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 3,
+                        ),
+                        itemCount: 6,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            // shape: RoundedRectangleBorder(
+                            //   side: BorderSide(
+                            //     color: Colors.black,
+                            //   ),
+                            //   borderRadius: BorderRadius.circular(6),
+                            // ),
+                            elevation: 6,
+                            child: Stack(
+                              children: [
+                                Image.asset("images/homepage.png", fit: BoxFit.fill,),
+                                Positioned(
+                                  left: 2.w,
+                                  bottom: -1.h,
+                                  child: Row(
+                                    children: [
+                                      Text('View Details', style: TextStyle(fontSize: 10.sp),),
+                                      IconButton(
+                                        onPressed: () { },
+                                        icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      }),
-                )
-                ),
+                              ],
+                            ),
+                          );
+                        }),
+                  )
+              ),
             ],
           )
-          : Column(
+              : Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
@@ -402,42 +401,42 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                       ),
                     ),
                     Positioned(
-                        right:25,
-                        bottom:25,
-                        child: Container(
-                          color: Colors.teal,
-                          //height: 30.h,
-                          width: 32.w,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text('BUILD YOUR DREAM HOME WITH US',
+                      right:25,
+                      bottom:25,
+                      child: Container(
+                        color: Colors.teal,
+                        //height: 30.h,
+                        width: 32.w,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('BUILD YOUR DREAM HOME WITH US',
+                                style: GoogleFonts.merriweatherSans(
+                                  fontSize: 4.sp,
+                                  fontWeight: FontWeight.w900,
+                                  height: 0.9,
+                                  color: Colors.white,//Color(0xff2596be),
+                                ),
+                                //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                                child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
                                   style: GoogleFonts.merriweatherSans(
-                                    fontSize: 4.sp,
-                                    fontWeight: FontWeight.w900,
-                                    height: 0.9,
+                                    fontSize: 3.sp,
+                                    //fontWeight: FontWeight.w900,
                                     color: Colors.white,//Color(0xff2596be),
                                   ),
+                                  textAlign: TextAlign.justify,
                                   //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
-                                    style: GoogleFonts.merriweatherSans(
-                                      fontSize: 3.sp,
-                                      //fontWeight: FontWeight.w900,
-                                      color: Colors.white,//Color(0xff2596be),
-                                    ),
-                                    textAlign: TextAlign.justify,
-                                    //style: TextStyle(color: Color(0xffad9c00), fontSize: 17.sp), textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
                         ),
+                      ),
                     )
                   ],
                 ),
@@ -453,18 +452,18 @@ class _HomeScreen_v2State extends State<HomeScreen_v2> {
                 //     )
                 //     ],)
               ),
-                // child: Row(
-                //   mainAxisAlignment: MainAxisAlignment.start,
-                //   children: [
-                //     Image.asset("images/homescreen low v4.png",fit: BoxFit.contain,height: MediaQuery.of(context).size.height,),
-                //     Container(
-                //       height: MediaQuery.of(context).size.height,
-                //       width: MediaQuery.of(context).size.width,
-                //       color: Color(0xFFeee6d1),
-                //     ),
-                //
-                //   ],
-                // ),
+              // child: Row(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: [
+              //     Image.asset("images/homescreen low v4.png",fit: BoxFit.contain,height: MediaQuery.of(context).size.height,),
+              //     Container(
+              //       height: MediaQuery.of(context).size.height,
+              //       width: MediaQuery.of(context).size.width,
+              //       color: Color(0xFFeee6d1),
+              //     ),
+              //
+              //   ],
+              // ),
               // Container(
               //   width: MediaQuery.of(context).size.width,
               //   child: Row(

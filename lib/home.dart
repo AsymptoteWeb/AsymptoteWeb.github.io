@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'Additional/responsive.dart';
 import 'Additional/constants.dart';
 import 'homescreen.dart';
+import 'homescreen_v3.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -15,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: HomeScreen_v2(),
+        body: HomeScreen_v3(),
         // ResponsiveWidget(
         //   largeScreen: HomeScreen(),
         //   smallScreen: HomeScreen(),
