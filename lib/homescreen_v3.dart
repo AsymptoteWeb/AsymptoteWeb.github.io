@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'Additional/constants.dart';
 import 'package:sizer/sizer.dart';
 
+
 class HomeScreen_v3 extends StatefulWidget {
   const HomeScreen_v3({Key? key}) : super(key: key);
 
@@ -181,20 +182,22 @@ class _HomeScreen_v3State extends State<HomeScreen_v3> {
                 ),
               ),
               Container(
-                height: 7.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Color(0xFFeee6d1),//Color(0xff010203),
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('OUR PROJECTS',
-                      style: GoogleFonts.merriweatherSans(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w900,
-                        height: 0.9,
-                        color: Color(0xff004d65),//Color(0xff2596be),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 25, 0, 0),
+                      child: Text('OUR PROJECTS',
+                        style: GoogleFonts.merriweatherSans(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w900,
+                          height: 0.9,
+                          color: Color(0xff004d65),//Color(0xff2596be),
+                        ),
                       ),
                     ),
                     Divider(
@@ -202,54 +205,108 @@ class _HomeScreen_v3State extends State<HomeScreen_v3> {
                       indent: 50,
                       endIndent: 50,
                     ),
+                    Container(
+                        height: 75.h,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFeee6d1),//Color(0xff010203),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GridView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                              ),
+                              itemCount: 8,
+                              itemBuilder: (BuildContext context, int index) {
+                                return GestureDetector(
+                                  onTap: (){
+                                    print(index);
+                                  },
+                                  child: Card(
+                                    // shape: RoundedRectangleBorder(
+                                    //   side: BorderSide(
+                                    //     color: Colors.black,
+                                    //   ),
+                                    //   borderRadius: BorderRadius.circular(6),
+                                    // ),
+                                    elevation: 6,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset("images/homepage.png", fit: BoxFit.contain,),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.fromLTRB(15, 0, 5, 0),
+                                                child: Text('View Details', style: TextStyle(fontSize: 8.sp),),
+                                              ),
+                                              IconButton(
+                                                onPressed: () { },
+                                                icon: Icon(Icons.arrow_right, size: 8.sp,),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
+                        )
+                    ),
                   ],
                 ),
               ),
-              Container(
-                  height: 40.h,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Color(0xFFeee6d1),//Color(0xff010203),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 3,
-                        ),
-                        itemCount: 6,
-                        itemBuilder: (BuildContext context, int index) {
-                          return Card(
-                            // shape: RoundedRectangleBorder(
-                            //   side: BorderSide(
-                            //     color: Colors.black,
-                            //   ),
-                            //   borderRadius: BorderRadius.circular(6),
-                            // ),
-                            elevation: 6,
-                            child: Stack(
-                              children: [
-                                Image.asset("images/homepage.png", fit: BoxFit.fill,),
-                                Positioned(
-                                  left: 2.w,
-                                  bottom: -1.h,
-                                  child: Row(
-                                    children: [
-                                      Text('View Details', style: TextStyle(fontSize: 10.sp),),
-                                      IconButton(
-                                        onPressed: () { },
-                                        icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  )
-              ),
+              // Container(
+              //     height: 50.h,
+              //     width: double.infinity,
+              //     decoration: BoxDecoration(
+              //       color: Color(0xFFeee6d1),//Color(0xff010203),
+              //     ),
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: GridView.builder(
+              //           physics: NeverScrollableScrollPhysics(),
+              //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              //             crossAxisCount: 3,
+              //           ),
+              //           itemCount: 6,
+              //           itemBuilder: (BuildContext context, int index) {
+              //             return Card(
+              //               // shape: RoundedRectangleBorder(
+              //               //   side: BorderSide(
+              //               //     color: Colors.black,
+              //               //   ),
+              //               //   borderRadius: BorderRadius.circular(6),
+              //               // ),
+              //               elevation: 6,
+              //               child: Stack(
+              //                 children: [
+              //                   Image.asset("images/homepage.png", fit: BoxFit.fill,),
+              //                   Positioned(
+              //                     left: 2.w,
+              //                     bottom: -1.h,
+              //                     child: Row(
+              //                       children: [
+              //                         Text('View Details', style: TextStyle(fontSize: 10.sp),),
+              //                         IconButton(
+              //                           onPressed: () { },
+              //                           icon: Icon(Icons.arrow_forward_outlined, size: 12.sp,),
+              //                         ),
+              //                       ],
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             );
+              //           }),
+              //     )
+              // ),
+
             ],
           )
               : Column(
@@ -543,10 +600,12 @@ class _HomeScreen_v3State extends State<HomeScreen_v3> {
                         }),
                   )
               ),
+
             ],
           ),
         ),
       ),
+
     );
   }
 }
