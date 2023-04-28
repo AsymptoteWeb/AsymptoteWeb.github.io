@@ -17,7 +17,7 @@ class AsymptoteHome extends StatelessWidget {
         return MaterialApp(
           scrollBehavior: MyCustomScrollBehavior(),
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Web',
+          title: 'Asymptote',
           theme: ThemeData(visualDensity: VisualDensity.adaptivePlatformDensity),
           home: HomePage(),
         );

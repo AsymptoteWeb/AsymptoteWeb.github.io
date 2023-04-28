@@ -7,7 +7,14 @@ import 'package:sizer/sizer.dart';
 
 import 'Additional/website_contents.dart';
 
-
+///render using this before release///
+///Step 1: cd C:\Users\Bivin\AndroidStudioProjects\companywebapp
+///Step 2: flutter build web --web-renderer canvaskit --release
+///Step 3: cd build/web
+///Step 4: git add .
+///Step 6: git commit -m "message"
+///Step 7: git push origin master
+///
 class HomeScreen_v5 extends StatefulWidget {
   const HomeScreen_v5({Key? key}) : super(key: key);
 
@@ -79,19 +86,23 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Icon(Icons.clear),
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(CircleBorder()),
-                  padding: MaterialStateProperty.all(EdgeInsets.all(20)),
-                  backgroundColor: MaterialStateProperty.all(Color(0xFFD5C08F)),
-                  overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                    if (states.contains(MaterialState.pressed)) return Color(0xff004d65);
-                  }),
-                ),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.clear,),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(CircleBorder()),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFFD5C08F)),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed)) return Color(0xff004d65);
+                      }),
+                    ),
+                  ),
+                ],
               ),
             ],
           );
@@ -244,7 +255,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
               //   ),
               // ),
               Container(
-                height: 60.h,
+                height: 75.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: Colors.white,//Color(0xff010203),
@@ -256,7 +267,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(50, 0, 30, 50),
-                        child: Image.asset("images/aboutus1.jpg", fit: BoxFit.contain,height: 25.h,),
+                        child: Image.asset("images/aboutus2.jpg", fit: BoxFit.contain,height: 25.h,),
                       ),
                       Text('About Us',
                         style: GoogleFonts.merriweatherSans(
@@ -314,7 +325,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                           ),
-                          itemCount: 7,
+                          itemCount: 8,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: (){
@@ -325,8 +336,18 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image.asset("images/homepage.png", fit: BoxFit.contain,),
                                     Expanded(
+                                        flex: 4,
+                                        child:ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            topLeft: Radius.circular(5),
+                                          ),
+                                          child: Image.asset("images/projects/${companyProjectsImg[index]}", fit: BoxFit.fill,),
+                                        ),
+                                    ),
+                                    Expanded(
+                                      flex: 1,
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -400,6 +421,186 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           }),
                     ),
                   ],
+                ),
+              ),
+              Container(
+                height: 105.h,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Color(0xFFeee6d1),//Color(0xff010203),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Card(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(15)),
+                          //color: Colors.green,
+                        ),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+                                        child: Text(
+                                          "Get In Touch",
+                                          style: GoogleFonts.merriweatherSans(
+                                            fontSize: 8.sp,
+                                            fontWeight: FontWeight.w900,
+                                            color: Color(0xff004d65),//Color(0xff2596be),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Fill in your details and our Team will get back\nto you shortly.",
+                                        style: GoogleFonts.merriweatherSans(
+                                          fontSize: 6.sp,
+                                          fontWeight: FontWeight.w400,
+                                          color: Color(0xff004d65),//Color(0xff2596be),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Expanded(child: Image.asset("images/Contact Us.png", fit: BoxFit.fitHeight,)),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 60.h,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                                  color: Color(0xFFeee6d1),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                                      child: TextField(
+                                        style:TextStyle(fontSize: 7.sp),
+                                        maxLength: 100,
+                                        decoration: InputDecoration(
+                                          fillColor: Colors.white70,
+                                          filled: true,
+                                          counterText: '',
+                                          labelText: 'Your Name',
+                                          labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
+                                          border: OutlineInputBorder(),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide:  BorderSide(color: Color(0xff004d65)),
+                                          ),
+                                          hintText: 'Enter your name  (max 100 char)',
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            padding: EdgeInsets.fromLTRB(20, 0, 5, 10),
+                                            child: TextField(
+                                              style:TextStyle(fontSize: 7.sp),
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white70,
+                                                counterText: '',
+                                                labelText: 'E-mail',
+                                                labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
+                                                border: OutlineInputBorder(),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide:  BorderSide(color: Color(0xff004d65)),
+                                                ),
+                                                hintText: 'Enter company email',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+                                            padding: EdgeInsets.fromLTRB(5, 0, 20, 10),
+                                            child: TextField(
+                                              style: TextStyle(fontSize: 7.sp),
+                                              keyboardType: TextInputType.number,
+                                              decoration: InputDecoration(
+                                                filled: true,
+                                                fillColor: Colors.white70,
+                                                labelText: 'Phone number',
+                                                labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
+                                                border: OutlineInputBorder(),
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide:  BorderSide(color: Color(0xff004d65)),
+                                                ),
+                                                hintText: 'Enter phone number',
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                                      child: TextField(
+                                        style:TextStyle(fontSize: 7.sp),
+                                        maxLines: 4,
+                                        decoration: InputDecoration(
+                                          counterText: '',
+                                          labelText: 'Message',
+                                          labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
+                                          filled: true,
+                                          fillColor: Colors.white38,
+                                          border: OutlineInputBorder(),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide:  BorderSide(color: Color(0xff004d65)),
+                                          ),
+                                          hintText: 'Enter message',
+                                        ),
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Expanded(child: Container()),
+                                        Expanded(
+                                          child: Container(
+                                            height: 10.h,
+                                            padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(backgroundColor: Color(0xff004d65),),
+                                              onPressed: (){},
+                                              child: Text(
+                                                "Submit",
+                                                style: GoogleFonts.merriweatherSans(
+                                                  fontSize: 8.sp,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.white70,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               Container(
@@ -792,11 +993,11 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 4,
+                              crossAxisCount: 5,
                             ),
-                            itemCount: 6,
+                            itemCount: 9,
                             itemBuilder: (BuildContext context, int index) {
-                            if(index != 5){
+                            if(index != 8){
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
@@ -804,8 +1005,19 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Image.asset("images/homepage.png", fit: BoxFit.contain,),
                                       Expanded(
+                                        flex: 4,
+                                        child:ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            topLeft: Radius.circular(5),
+                                          ),
+                                          child: Image.asset("images/projects/${companyProjectsImg[index]}", fit: BoxFit.fill,),
+                                        ),
+                                      ),
+                                      //Image.asset("images/homepage.png", fit: BoxFit.contain,),
+                                      Expanded(
+                                        flex: 1,
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
@@ -839,11 +1051,11 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                              child: Text('View More \nProjects', style: TextStyle(fontSize: 6.sp),),
+                                              child: Text('View More \nProjects', style: TextStyle(fontSize: 4.sp),),
                                             ),
                                             IconButton(
                                               onPressed: () { },
-                                              icon: Icon(Icons.arrow_right, size: 7.sp,),
+                                              icon: Icon(Icons.arrow_right, size: 4.sp,),
                                             ),
                                           ],
                                         ),
@@ -997,6 +1209,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                       Container(
                                         padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                         child: TextField(
+                                          style:TextStyle(fontSize: 3.sp),
                                           maxLength: 100,
                                           decoration: InputDecoration(
                                             fillColor: Colors.white70,
@@ -1018,6 +1231,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(20, 0, 5, 10),
                                               child: TextField(
+                                                style:TextStyle(fontSize: 3.sp),
                                                 decoration: InputDecoration(
                                                   filled: true,
                                                   fillColor: Colors.white70,
@@ -1037,6 +1251,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(5, 0, 20, 10),
                                               child: TextField(
+                                                style: TextStyle(fontSize: 3.sp),
                                                 keyboardType: TextInputType.number,
                                                 decoration: InputDecoration(
                                                   filled: true,
@@ -1057,6 +1272,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                       Container(
                                         padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                         child: TextField(
+                                          style:TextStyle(fontSize: 3.sp),
                                           maxLines: 4,
                                           decoration: InputDecoration(
                                             counterText: '',

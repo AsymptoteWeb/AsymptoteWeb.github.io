@@ -43,6 +43,17 @@ const List<String> companyServicesImg = [
   'Services5.png',
 ];
 
+const List<String> companyProjectsImg = [
+  'Project1.png',
+  'Project2.png',
+  'Project3.png',
+  'Project4.png',
+  'Project5.png',
+  'Project6.png',
+  'Project7.png',
+  'Project8.png',
+];
+
 const String companyEmail = 'asymptote.auh@gmail.com';
 const String companyContactNumber = '+971 552265760';
 const String companyAddressLine1 = 'Office No. 10';
