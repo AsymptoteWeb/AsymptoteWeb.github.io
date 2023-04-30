@@ -38,6 +38,7 @@ dependencies:
   google_fonts: ^4.0.3
   url_launcher: ^6.1.10
   dropdown_button2: ^2.1.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:

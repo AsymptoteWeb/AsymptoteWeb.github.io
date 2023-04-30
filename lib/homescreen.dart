@@ -1,4 +1,4 @@
-import 'package:companywebapp/desktop_topbar.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,6 +6,8 @@ import 'Additional/constants.dart';
 import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
+import 'Additional/mobile_dropdown.dart';
+import 'Additional/sending_auto_email.dart';
 import 'Additional/website_contents.dart';
 
 ///render using this before release///
@@ -16,6 +18,7 @@ import 'Additional/website_contents.dart';
 ///Step 6: git commit -m "message"
 ///Step 7: git push origin master
 ///
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -30,13 +33,32 @@ class _HomeScreenState extends State<HomeScreen> {
   final servicesWebKey = GlobalKey();
   final servicesMobileKey = GlobalKey();
   final contactUsWebKey = GlobalKey();
+  final contactUsMobileKey = GlobalKey();
 
   final ScrollController _scrollController = ScrollController();
+
+  final _contactName = TextEditingController();
+  final _contactEmail = TextEditingController();
+  final _contactNumber = TextEditingController();
+  final _contactMessage = TextEditingController();
+  bool _validateName = false;
+  bool _validateMail = false;
+  bool _validatePhone = false;
+  bool _validateMessage = false;
 
   final List _isHovering = [
     false,
     false,
   ];
+
+  @override
+  void dispose() {
+    _contactName.dispose();
+    _contactEmail.dispose();
+    _contactNumber.dispose();
+    _contactMessage.dispose();
+    super.dispose();
+  }
 
   Future<void> _showServicesDialog(int selectedIndex) async {
     await showDialog<void>(
@@ -86,6 +108,79 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           );
         });
+  }
+
+  Future<void> _showSubmittedDialog() async {
+    await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            backgroundColor: Color(0xFFeee6d1),
+            // title: Text(
+            //   companyServices[selectedIndex],
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(fontWeight: FontWeight.w900),
+            // ),
+            children: <Widget>[
+              //Image.asset("images/services/${companyServicesImg[selectedIndex]}", height:  40.h,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Text(
+                  'Submitted Successfully!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.clear,),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(CircleBorder()),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFFD5C08F)),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed)) return Color(0xff004d65);
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        });
+  }
+
+  onValidateAndSubmit(){
+    if(_contactName.text.isNotEmpty && _contactMessage.text.isNotEmpty && (_contactEmail.text.isNotEmpty || _contactNumber.text.isNotEmpty)){
+      sendingAutomatedEmail(
+        name: _contactName.text,
+        email: _contactEmail.text,
+        number: _contactNumber.text,
+        message: _contactMessage.text,
+      );
+      _showSubmittedDialog();
+      setState(() {
+        _contactName.clear();
+        _contactEmail.clear();
+        _contactMessage.clear();
+        _contactNumber.clear();
+        _validateName = false;
+        _validateMail = false;
+        _validatePhone = false;
+        _validateMessage = false;
+      });
+    }else{
+      setState(() {
+        _contactName.text.isEmpty ? _validateName = true : _validateName = false;
+        _contactMessage.text.isEmpty ? _validateMessage = true : _validateMessage = false;
+        _contactNumber.text.isEmpty ? _validatePhone = true : _validatePhone = false;
+        _contactEmail.text.isEmpty ? _validateMail = true : _validateMail = false;
+      });
+    }
   }
 
 
@@ -154,13 +249,60 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Color(0xff004d65),//Color(0xffad9c00),
           ),
         ),
-        actions: [
-          IconButton(
-              onPressed: (){
-                //TODO: Dropdown
-                // Scrollable.ensureVisible(projectsMobileKey.currentContext!, duration: Duration(seconds: 1), curve: Curves.easeIn);
-              },
-              icon: Icon(Icons.menu, size: 17.sp, color: Color(0xff004d65),)
+        actions: [//TODO: Dropdown
+          // IconButton(
+          //     onPressed: (){
+          //       // Scrollable.ensureVisible(projectsMobileKey.currentContext!, duration: Duration(seconds: 1), curve: Curves.easeIn);
+          //     },
+          //     icon: Icon(Icons.menu, size: 17.sp, color: Color(0xff004d65),)
+          // ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton2(
+                customButton: Icon(
+                  Icons.menu,
+                  size: 17.sp,
+                  color: Color(0xff004d65),
+                ),
+                items: [
+                  ...MenuItems.firstItems.map(
+                        (item) => DropdownMenuItem<MenuItem>(
+                      value: item,
+                      child: MenuItems.buildItem(item),
+                    ),
+                  ),
+                  const DropdownMenuItem<Divider>(enabled: false, child: Divider()),
+                  ...MenuItems.secondItems.map(
+                        (item) => DropdownMenuItem<MenuItem>(
+                      value: item,
+                      child: MenuItems.buildItem(item),
+                    ),
+                  ),
+                ],
+                onChanged: (value) {
+                  MenuItems.onChanged(context, value as MenuItem, [projectsMobileKey,servicesMobileKey,contactUsMobileKey]);
+                },
+                dropdownStyleData: DropdownStyleData(
+                  width: 160,
+                  padding: const EdgeInsets.symmetric(vertical: 6),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Color(0xff187299),
+                  ),
+                  elevation: 8,
+                  offset: const Offset(0, 8),
+                ),
+                menuItemStyleData: MenuItemStyleData(
+                  customHeights: [
+                    ...List<double>.filled(MenuItems.firstItems.length, 48),
+                    8,
+                    ...List<double>.filled(MenuItems.secondItems.length, 48),
+                  ],
+                  padding: const EdgeInsets.only(left: 16, right: 16),
+                ),
+              ),
+            ),
           ),
         ],
       ) : null,
@@ -355,6 +497,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
+                key: servicesMobileKey,
                 height: 75.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -407,6 +550,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
+                key: contactUsMobileKey,
                 height: 105.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -473,10 +617,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Container(
                                       padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                       child: TextField(
+                                        controller: _contactName,
                                         style:TextStyle(fontSize: 7.sp),
                                         maxLength: 100,
                                         decoration: InputDecoration(
                                           fillColor: Colors.white70,
+                                          errorText: _validateName ? 'Value Can\'t Be Empty' : null,
                                           filled: true,
                                           counterText: '',
                                           labelText: 'Your Name',
@@ -485,7 +631,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           focusedBorder: OutlineInputBorder(
                                             borderSide:  BorderSide(color: Color(0xff004d65)),
                                           ),
-                                          hintText: 'Enter your name  (max 100 char)',
+                                          hintText: 'Enter your name',
                                         ),
                                       ),
                                     ),
@@ -495,9 +641,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: Container(
                                             padding: EdgeInsets.fromLTRB(20, 0, 5, 10),
                                             child: TextField(
+                                              controller: _contactEmail,
                                               style:TextStyle(fontSize: 7.sp),
                                               decoration: InputDecoration(
                                                 filled: true,
+                                                errorText: _validateMail ? 'Value Can\'t Be Empty' : null,
                                                 fillColor: Colors.white70,
                                                 counterText: '',
                                                 labelText: 'E-mail',
@@ -506,7 +654,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 focusedBorder: OutlineInputBorder(
                                                   borderSide:  BorderSide(color: Color(0xff004d65)),
                                                 ),
-                                                hintText: 'Enter company email',
+                                                hintText: 'Enter your email',
                                               ),
                                             ),
                                           ),
@@ -515,10 +663,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                           child: Container(
                                             padding: EdgeInsets.fromLTRB(5, 0, 20, 10),
                                             child: TextField(
+                                              controller: _contactNumber,
                                               style: TextStyle(fontSize: 7.sp),
                                               keyboardType: TextInputType.number,
                                               decoration: InputDecoration(
                                                 filled: true,
+                                                errorText: _validatePhone ? 'Value Can\'t Be Empty' : null,
                                                 fillColor: Colors.white70,
                                                 labelText: 'Phone number',
                                                 labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
@@ -536,10 +686,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Container(
                                       padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                       child: TextField(
+                                        controller: _contactMessage,
                                         style:TextStyle(fontSize: 7.sp),
                                         maxLines: 4,
                                         decoration: InputDecoration(
                                           counterText: '',
+                                          errorText: _validateMessage ? 'Value Can\'t Be Empty' : null,
                                           labelText: 'Message',
                                           labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
                                           filled: true,
@@ -561,7 +713,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(backgroundColor: Color(0xff004d65),),
-                                              onPressed: (){},
+                                              onPressed: onValidateAndSubmit,
                                               child: Text(
                                                 "Submit",
                                                 style: GoogleFonts.merriweatherSans(
@@ -1205,10 +1357,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                         child: TextField(
+                                          controller: _contactName,
                                           style:TextStyle(fontSize: 3.sp),
                                           maxLength: 100,
                                           decoration: InputDecoration(
                                             fillColor: Colors.white70,
+                                            errorText: _validateName ? 'Value Can\'t Be Empty' : null,
                                             filled: true,
                                             counterText: '',
                                             labelText: 'Your Name',
@@ -1217,7 +1371,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                             focusedBorder: OutlineInputBorder(
                                               borderSide:  BorderSide(color: Color(0xff004d65)),
                                             ),
-                                            hintText: 'Enter your name  (max 100 char)',
+                                            hintText: 'Enter your name',
                                           ),
                                         ),
                                       ),
@@ -1227,9 +1381,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(20, 0, 5, 10),
                                               child: TextField(
+                                                controller: _contactEmail,
                                                 style:TextStyle(fontSize: 3.sp),
                                                 decoration: InputDecoration(
                                                   filled: true,
+                                                  errorText: _validateMail ? 'Value Can\'t Be Empty' : null,
                                                   fillColor: Colors.white70,
                                                   counterText: '',
                                                   labelText: 'E-mail',
@@ -1238,7 +1394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   focusedBorder: OutlineInputBorder(
                                                     borderSide:  BorderSide(color: Color(0xff004d65)),
                                                   ),
-                                                  hintText: 'Enter company email',
+                                                  hintText: 'Enter your email',
                                                 ),
                                               ),
                                             ),
@@ -1247,9 +1403,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                             child: Container(
                                               padding: EdgeInsets.fromLTRB(5, 0, 20, 10),
                                               child: TextField(
+                                                controller: _contactNumber,
                                                 style: TextStyle(fontSize: 3.sp),
                                                 keyboardType: TextInputType.number,
                                                 decoration: InputDecoration(
+                                                  errorText: _validatePhone ? 'Value Can\'t Be Empty' : null,
                                                   filled: true,
                                                   fillColor: Colors.white70,
                                                   labelText: 'Phone number',
@@ -1268,10 +1426,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       Container(
                                         padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                         child: TextField(
+                                          controller: _contactMessage,
                                           style:TextStyle(fontSize: 3.sp),
                                           maxLines: 4,
                                           decoration: InputDecoration(
                                             counterText: '',
+                                            errorText: _validateMessage ? 'Value Can\'t Be Empty' : null,
                                             labelText: 'Message',
                                             labelStyle: TextStyle(color: Color(0xff004d65),fontWeight: FontWeight.w100),
                                             filled: true,
@@ -1293,7 +1453,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               padding: EdgeInsets.fromLTRB(20, 20, 20, 10),
                                               child: ElevatedButton(
                                                 style: ElevatedButton.styleFrom(backgroundColor: Color(0xff004d65),),
-                                                onPressed: (){},
+                                                onPressed: onValidateAndSubmit,
                                                 child: Text(
                                                   "Submit",
                                                   style: GoogleFonts.merriweatherSans(
