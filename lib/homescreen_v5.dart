@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Additional/constants.dart';
 import 'package:sizer/sizer.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 import 'Additional/website_contents.dart';
 
@@ -28,6 +29,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
   final projectsMobileKey = GlobalKey();
   final servicesWebKey = GlobalKey();
   final servicesMobileKey = GlobalKey();
+  final contactUsWebKey = GlobalKey();
 
   final ScrollController _scrollController = ScrollController();
 
@@ -58,6 +60,56 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
     false,
     false,
   ];
+
+  Future<void> _showProjectsDialog(int selectedIndex) async {
+    await showDialog<void>(
+        context: context,
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            backgroundColor: Color(0xFFeee6d1),
+            title: Text(
+              companyServices[selectedIndex],
+              textAlign: TextAlign.center,
+              style: TextStyle(fontWeight: FontWeight.w900),
+            ),
+            children: <Widget>[
+              Image.asset("images/projects/${companyProjectsImg[selectedIndex]}", height:  40.h,),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Text(
+                  companyServicesDetailsHeading[selectedIndex],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+                child: Text(companyServicesDetails[selectedIndex],
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Icon(Icons.clear,),
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(CircleBorder()),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(20)),
+                      backgroundColor: MaterialStateProperty.all(Color(0xFFD5C08F)),
+                      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                        if (states.contains(MaterialState.pressed)) return Color(0xff004d65);
+                      }),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          );
+        });
+  }
 
   Future<void> _showServicesDialog(int selectedIndex) async {
     await showDialog<void>(
@@ -164,17 +216,24 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
         elevation: 3,
         shadowColor: Color(0xffeee6d1),//eee6d1
         backgroundColor: Colors.white,//Color(0xff010203),
-        title: Image.asset("images/logo.png",height: 7.h, color: Color(0xff2596be),),
+        title: Image.asset("images/logo.png",height: 7.h, color: Color(0xff187299)),//color: Color(0xff004d65),
         centerTitle: true,
-        leading: Icon(Icons.call, size: 17.sp,
-          color: Color(0xff2596be),//Color(0xffad9c00),
+        leading: IconButton(
+          onPressed: (){
+            //TODO: Redirect to call
+            UrlLauncher.launch("tel://+971556535870");
+          },
+          icon: Icon(Icons.call, size: 17.sp,
+            color: Color(0xff004d65),//Color(0xffad9c00),
+          ),
         ),
         actions: [
           IconButton(
               onPressed: (){
+                //TODO: Dropdown
                 // Scrollable.ensureVisible(projectsMobileKey.currentContext!, duration: Duration(seconds: 1), curve: Curves.easeIn);
               },
-              icon: Icon(Icons.menu, size: 17.sp, color: Color(0xff2596be),)
+              icon: Icon(Icons.menu, size: 17.sp, color: Color(0xff004d65),)
           ),
         ],
       ) : null,
@@ -205,9 +264,9 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                         color: Colors.transparent,
                       ),
                       child: Text(
-                        'Powered By \n    Innovation',
+                        'Your Dreams\n   to Perfection',
                         style: GoogleFonts.playfairDisplay(
-                          fontSize: 25.sp,
+                          fontSize: 22.sp,
                           fontWeight: FontWeight.w900,
                           height: 0.9,
                           color: Color(0xff001f2a),
@@ -349,16 +408,13 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                     Expanded(
                                       flex: 1,
                                       child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.fromLTRB(15, 0, 5, 0),
-                                            child: Text('View Details', style: TextStyle(fontSize: 8.sp, fontWeight: FontWeight.bold),),
-                                          ),
-                                          IconButton(
-                                            onPressed: () { },
-                                            icon: Icon(Icons.arrow_right, size: 8.sp,),
-                                          ),
+                                          Text(companyProjectsLocation[index], style: TextStyle(fontSize: 7.sp, fontWeight: FontWeight.bold),),
+                                          // IconButton(
+                                          //   onPressed: () { },
+                                          //   icon: Icon(Icons.arrow_right, size: 8.sp,),
+                                          // ),
                                         ],
                                       ),
                                     ),
@@ -608,98 +664,113 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                 color: Colors.black,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                          flex: 1,
-                          child: Image.asset('images/logo.png', height: 70, color: Colors.white,)),
-                      Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(Icons.email, size: 15, color: Colors.white),
-                                  SizedBox(
-                                      width: 5
-                                  ),
-                                  Text(
-                                    companyEmail,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: 5
-                              ),
-                              Row(
-                                children: [
-                                  Icon(Icons.phone, size: 15, color: Colors.white),
-                                  SizedBox(
-                                      width: 5
-                                  ),
-                                  Text(
-                                    companyContactNumber,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                  height: 5
-                              ),
-                              Column(
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              flex: 1,
+                              child: Image.asset('images/logo.png', height: 70, color: Colors.white,)),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    companyAddressLine1,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
+                                  Row(
+                                    children: [
+                                      Icon(Icons.email, size: 15, color: Colors.white),
+                                      SizedBox(
+                                          width: 5
+                                      ),
+                                      Text(
+                                        companyEmail,
+                                        style: TextStyle(
+                                          fontSize: 7.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                      height: 5
+                                  ),
+                                  GestureDetector(
+                                    onTap: (){
+                                      UrlLauncher.launch("tel://+971556535870");
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Icon(Icons.phone, size: 15, color: Colors.white),
+                                        SizedBox(
+                                            width: 5
+                                        ),
+                                        Text(
+                                          companyContactNumber,
+                                          style: TextStyle(
+                                            fontSize: 7.sp,
+                                            color: Colors.grey[600],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Text(
-                                    companyAddressLine2,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
+                                  SizedBox(
+                                      height: 5
                                   ),
-                                  Text(
-                                    companyAddressLine3,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                  Text(
-                                    companyCountry,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
-                                  ),
-                                  Text(
-                                    companyCopyright,
-                                    style: TextStyle(
-                                      fontSize: 7.sp,
-                                      color: Colors.grey[600],
-                                    ),
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        companyAddressLine1,
+                                        style: TextStyle(
+                                          fontSize: 7.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                      Text(
+                                        companyAddressLine2,
+                                        style: TextStyle(
+                                          fontSize: 7.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                      Text(
+                                        companyAddressLine3,
+                                        style: TextStyle(
+                                          fontSize: 7.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                      Text(
+                                        companyCountry,
+                                        style: TextStyle(
+                                          fontSize: 7.sp,
+                                          color: Colors.grey[600],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            companyCopyright,
+                            style: TextStyle(
+                              fontSize: 7.sp,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -727,7 +798,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           color: Colors.transparent,
                         ),
                         child: Text(
-                          'Powered By \n    Innovation',
+                          'Your Dreams\n    to Perfection',
                           style: GoogleFonts.playfairDisplay(
                             fontSize: 18.sp,
                             fontWeight: FontWeight.w900,
@@ -833,7 +904,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                             InkWell(
                               focusColor: Colors.tealAccent,
                               onTap: (){
-
+                                Scrollable.ensureVisible(contactUsWebKey.currentContext!, duration: Duration(seconds: 1), curve: Curves.easeIn);
                               },
                               child: Container(
                                 //height: 5.h,
@@ -867,7 +938,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                         //height: 30.h,
                         width: 32.w,
                         child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          padding: const EdgeInsets.fromLTRB(35, 35, 35, 35),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -882,7 +953,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: Text('Lorem Ipsum is simply dummy text of the printing and typesetting industry. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
+                                child: Text(companyIntro,
                                   style: GoogleFonts.merriweatherSans(
                                     fontSize: 3.sp,
                                     //fontWeight: FontWeight.w900,
@@ -952,7 +1023,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             children: [
-                              Image.asset("images/aboutus1.jpg", fit: BoxFit.fitWidth,),
+                              Image.asset("images/aboutus2.jpg", fit: BoxFit.fitWidth,),
                             ],
                           ),
                         ),
@@ -1019,16 +1090,13 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                                       Expanded(
                                         flex: 1,
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(15, 0, 5, 0),
-                                              child: Text('View Details', style: TextStyle(fontSize: 4.sp),),
-                                            ),
-                                            IconButton(
-                                              onPressed: () { },
-                                              icon: Icon(Icons.arrow_right, size: 4.sp,),
-                                            ),
+                                            Text(companyProjectsLocation[index], style: TextStyle(fontSize: 3.sp),),
+                                            // IconButton(
+                                            //   onPressed: () { },
+                                            //   icon: Icon(Icons.arrow_right, size: 4.sp,),
+                                            // ),
                                           ],
                                         ),
                                       ),
@@ -1131,6 +1199,7 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                 ),
               ),
               Container(
+                key: contactUsWebKey,
                 height: 75.h,
                 width: double.infinity,
                 decoration: BoxDecoration(
@@ -1432,10 +1501,10 @@ class _HomeScreen_v5State extends State<HomeScreen_v5> {
                           ),
                         ),
                       ),
-                      Expanded(
-                          flex: 1,
-                          child: SizedBox()
-                      ),
+                      // Expanded(
+                      //     flex: 1,
+                      //     child: SizedBox()
+                      // ),
                       Expanded(
                         flex: 1,
                         child: Column(

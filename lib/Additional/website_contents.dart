@@ -1,11 +1,13 @@
-import 'package:flutter/material.dart';
-
-const aboutCompany = "Asymptote General Contracting LLC. is a limited liability "
+const String aboutCompany = "Asymptote General Contracting LLC. is a limited liability "
     "company established in the Abu Dhabi emirate of the UAE in year 2012. As a "
     "General Contracting company, we provide construction services in Abu Dhabi "
     "and other emirates in the UAE. Our activities include construction of residential "
     "and commercial building projects, Facility management and General building maintenance. "
     "We have tie-ups with several specialized companies to carry out specialized jobs.";
+
+const String companyIntro = "Welcome to Asymptote General Contracting, "
+    "where we build dreams and transform spaces. Our team of experts provides "
+    "high-quality construction, renovation, and maintenance services to bring your vision to life.";
 
 const List<String> companyServices = [
   'Building Construction',
@@ -43,6 +45,17 @@ const List<String> companyServicesImg = [
   'Services5.png',
 ];
 
+const List<String> companyProjectsLocation = [
+  'Shaleela',
+  'Al Shatie Al Jadeedah',
+  'Samha East',
+  'Al Bahya Old',
+  'MBZ City',
+  'Al Shatie Al Jadeedah',
+  'Bani Yas',
+  'Bani Yas',
+];
+
 const List<String> companyProjectsImg = [
   'Project1.png',
   'Project2.png',
@@ -55,7 +68,7 @@ const List<String> companyProjectsImg = [
 ];
 
 const String companyEmail = 'asymptote.auh@gmail.com';
-const String companyContactNumber = '+971 552265760';
+const String companyContactNumber = '+971 556535870';
 const String companyAddressLine1 = 'Office No. 10';
 const String companyAddressLine2 = 'PRP 70351';
 const String companyAddressLine3 = 'M16, Mussafah';

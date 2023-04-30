@@ -36,7 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   sizer: ^2.0.15
   google_fonts: ^4.0.3
-  boxy: ^2.0.9
+  url_launcher: ^6.1.10
+  dropdown_button2: ^2.1.0
 
 dev_dependencies:
   flutter_test:
