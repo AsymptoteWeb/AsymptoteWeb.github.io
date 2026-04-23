@@ -50,7 +50,6 @@ const List<String> companyProjectsLocation = [
   'Al Shatie Al Jadeedah',
   'Samha East',
   'Al Bahya Old',
-  'MBZ City',
   'Al Shatie Al Jadeedah',
   'Bani Yas',
   'Bani Yas',
@@ -61,14 +60,13 @@ const List<String> companyProjectsImg = [
   'Project2.png',
   'Project3.png',
   'Project4.png',
-  'Project5.png',
   'Project6.png',
   'Project7.png',
   'Project8.png',
 ];
 
-const String companyEmail = 'asymptote.auh@gmail.com';
-const String companyContactNumber = '+971 556535870';
+const String companyEmail = 'info@asymptote.ae';
+const String companyContactNumber = '+971 58 6860870';
 const String companyAddressLine1 = 'Office No. 10';
 const String companyAddressLine2 = 'PRP 70351';
 const String companyAddressLine3 = 'M16, Mussafah';

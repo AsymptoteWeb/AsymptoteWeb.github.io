@@ -243,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: IconButton(
           onPressed: (){
             //TODO: Redirect to call
-            UrlLauncher.launch("tel://+971556535870");
+            UrlLauncher.launch("tel://+971586860870");
           },
           icon: Icon(Icons.call, size: 17.sp,
             color: Color(0xff004d65),//Color(0xffad9c00),
@@ -432,7 +432,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('OUR PROJECTS',
+                    Text('OUR PROJECTS IN ABU DHABI',
                       style: GoogleFonts.merriweatherSans(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w900,
@@ -453,7 +453,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
                           ),
-                          itemCount: 8,
+                          itemCount: 7,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: (){
@@ -779,7 +779,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      UrlLauncher.launch("tel://+971556535870");
+                                      UrlLauncher.launch("tel://+971586860870");
                                     },
                                     child: Row(
                                       children: [
@@ -898,7 +898,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Row(
                           children: [
                             SizedBox(width: 20,),
-                            Image.asset("images/logo.png",height: 6.h,color: Color(0xff004d65),),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset("images/logo.png",height: 8.h,color: Color(0xff004d65),),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: Text(
+                                    "Asymptote General Contracting",
+                                    style: GoogleFonts.roboto(
+                                      fontSize: 3.sp,
+                                      //fontWeight: FontWeight.w900,
+                                      color: Color(0xff004d65),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
                             Expanded(child: SizedBox()),
                             InkWell(
                               onHover: (value) {
@@ -1121,7 +1137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('OUR PROJECTS',
+                    Text('OUR PROJECTS IN ABU DHABI',
                       style: GoogleFonts.merriweatherSans(
                         fontSize: 6.sp,
                         fontWeight: FontWeight.w900,
@@ -1145,45 +1161,37 @@ class _HomeScreenState extends State<HomeScreen> {
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 5,
                             ),
-                            itemCount: 9,
+                            itemCount: 7,
                             itemBuilder: (BuildContext context, int index) {
-                              if(index != 8){
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    elevation: 6,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Expanded(
-                                          flex: 4,
-                                          child:ClipRRect(
-                                            borderRadius: BorderRadius.only(
-                                              topRight: Radius.circular(5),
-                                              topLeft: Radius.circular(5),
-                                            ),
-                                            child: Image.asset("images/projects/${companyProjectsImg[index]}", fit: BoxFit.fill,),
-                                          ),
-                                        ),
-                                        //Image.asset("images/homepage.png", fit: BoxFit.contain,),
-                                        Expanded(
-                                          flex: 1,
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            children: [
-                                              Text(companyProjectsLocation[index], style: TextStyle(fontSize: 3.sp),),
-                                              // IconButton(
-                                              //   onPressed: () { },
-                                              //   icon: Icon(Icons.arrow_right, size: 4.sp,),
-                                              // ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
+                              // if(index == 8){
+                              //   return Padding(
+                              //     padding: const EdgeInsets.all(8.0),
+                              //     child: Card(
+                              //       elevation: 6,
+                              //       child: Column(
+                              //         mainAxisAlignment: MainAxisAlignment.center,
+                              //         children: [
+                              //           //Image.asset("images/homepage.png", fit: BoxFit.contain,),
+                              //           Expanded(
+                              //             child: Row(
+                              //               mainAxisAlignment: MainAxisAlignment.center,
+                              //               children: [
+                              //                 Padding(
+                              //                   padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
+                              //                   child: Text('View More \nProjects', style: TextStyle(fontSize: 4.sp),),
+                              //                 ),
+                              //                 IconButton(
+                              //                   onPressed: () { },
+                              //                   icon: Icon(Icons.arrow_right, size: 4.sp,),
+                              //                 ),
+                              //               ],
+                              //             ),
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   );
+                              // }
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Card(
@@ -1191,19 +1199,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
+                                      Expanded(
+                                        flex: 4,
+                                        child:ClipRRect(
+                                          borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(5),
+                                            topLeft: Radius.circular(5),
+                                          ),
+                                          child: Image.asset("images/projects/${companyProjectsImg[index]}", fit: BoxFit.fill,),
+                                        ),
+                                      ),
                                       //Image.asset("images/homepage.png", fit: BoxFit.contain,),
                                       Expanded(
+                                        flex: 1,
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.center,
                                           children: [
-                                            Padding(
-                                              padding: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                              child: Text('View More \nProjects', style: TextStyle(fontSize: 4.sp),),
-                                            ),
-                                            IconButton(
-                                              onPressed: () { },
-                                              icon: Icon(Icons.arrow_right, size: 4.sp,),
-                                            ),
+                                            Text(companyProjectsLocation[index], style: TextStyle(fontSize: 3.sp),),
+                                            // IconButton(
+                                            //   onPressed: () { },
+                                            //   icon: Icon(Icons.arrow_right, size: 4.sp,),
+                                            // ),
                                           ],
                                         ),
                                       ),
